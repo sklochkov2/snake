@@ -39,7 +39,7 @@ fn move_snake(snake: &mut Vec<Vec<usize>>, mv: &Vec<i32>) {
     let mut nxt_x: usize = snake[0][0];
     let mut nxt_y: usize = snake[0][1];
     snake[0][0] = ((snake[0][0] as i32) + mv[0]) as usize;
-    snake[0][1] = ((snake[0][1] as i32 + mv[1])) as usize;
+    snake[0][1] = ((snake[0][1] as i32) + mv[1]) as usize;
     for i in 1..(snake.len()) {
         let tmp_x: usize = snake[i][0];
         let tmp_y: usize = snake[i][1];
@@ -110,7 +110,7 @@ fn find_next_move_dfs(board_size: &Vec<usize>, snake: &Vec<Vec<usize>>, food: &V
     let mut res: Vec<i32> = Vec::new();
     let bearing_x: i32 = (food[0] as i32) - (snake[0][0] as i32);
     let bearing_y: i32 = (food[1] as i32) - (snake[0][1] as i32);
-    if bearing_x.abs() <= 1 && bearing_y.abs() <= 1 {
+    if bearing_x.abs() + bearing_y.abs() <= 1 {
         return vec![0, 0, 1000];
     }
     let mut current_order: Vec<Vec<i32>> = Vec::new();
